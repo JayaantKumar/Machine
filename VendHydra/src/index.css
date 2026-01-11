@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Apply base styles */
+  html,
+  body,
+  #root {
+    @apply h-full w-full m-0 p-0 font-lexend text-white overflow-hidden select-none;
+  }
+}
+
+@layer components {
+  /* Custom utility classes from the prompt */
+  .gradient-bg {
+    @apply bg-gradient-to-br from-tangerine-orange to-cyan-blue;
+  }
+
+  .product-card {
+    @apply flex-none w-[400px] aspect-[3/4] rounded-3xl shadow-2xl transition-transform duration-300 hover:scale-105 bg-cover bg-center relative overflow-hidden cursor-pointer;
+  }
+
+  .price-overlay {
+    @apply absolute inset-0 bg-black/40 text-6xl font-black opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center;
+  }
+
+  .step-item {
+    @apply flex items-center justify-center gap-2 px-6 py-2 rounded-full bg-white/20 transition-colors text-lg font-medium;
+  }
+
+  .step-item.active {
+    @apply bg-primary;
+  }
+
+  .step-number {
+    @apply w-8 h-8 rounded-full flex items-center justify-center font-bold bg-white/30 text-base;
+  }
+
+  .step-item.active .step-number {
+    @apply bg-white text-primary;
+  }
+
+  .spinner {
+    @apply w-[150px] h-[150px] border-8 border-white/30 border-t-primary rounded-full animate-spin;
+  }
+
+  /* Hide scrollbar utility */
+  .carousel-container::-webkit-scrollbar {
+    display: none;
+  }
+  .carousel-container {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
+/* ... existing tailwind imports ... */
+
+@layer utilities {
+  .animate-pulse-slow {
+    animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .animate-loading-bar {
+    animation: loading 3s ease-in-out forwards;
+  }
+
+  .animate-fade-out {
+    animation: fade-out 0.5s ease-out 3s forwards; /* Starts fading after 3s */
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .8; transform: scale(1.05); }
+}
+
+@keyframes loading {
+  0% { width: 0%; }
+  50% { width: 40%; }
+  100% { width: 100%; }
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; visibility: hidden; }
+}
